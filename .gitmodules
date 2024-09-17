@@ -1,3 +1,12 @@
 [submodule "Hyperskill-Meal-Planner"]
 	path = Hyperskill-Meal-Planner
 	url = https://github.com/AQUAiTE/Hyperskill-Meal-Planner.git
+[submodule "Hyperskill-Simple-Chatbot"]
+	path = Hyperskill-Simple-Chatbot
+	url = https://github.com/AQUAiTE/Hyperskill-Simple-Chatbot.git
+[submodule "Hyperskill-Zookeeper"]
+	path = Hyperskill-Zookeeper
+	url = https://github.com/AQUAiTE/Hyperskill-Zookeeper
+[submodule "Hyperskill-ASCII-Mirror"]
+	path = Hyperskill-ASCII-Mirror
+	url = https://github.com/AQUAiTE/Hyperskill-ASCII-Mirror
