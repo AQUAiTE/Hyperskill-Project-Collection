@@ -14,6 +14,7 @@ public class CompanyDAOImp implements CompanyDAO {
 
             if (!rs.isBeforeFirst()) {
                 System.out.println("The company list is empty!");
+                System.out.println();
                 return companies;
             }
 
@@ -34,11 +35,9 @@ public class CompanyDAOImp implements CompanyDAO {
 
     @Override
     public void createNewCompany(DBManager db, String name) {
-
         try (Connection conn = DriverManager.getConnection(db.getDbURL())) {
             PreparedStatement ps = conn.prepareStatement(Queries.CREATE_NEW_COMPANY);
             ps.setObject(1, name);
-
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

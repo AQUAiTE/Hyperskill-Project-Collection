@@ -28,8 +28,10 @@ public class DBManager {
             this.conn.setAutoCommit(true);
 
             this.stmt = this.conn.createStatement();
+            this.stmt.execute("DROP TABLE IF EXISTS CAR");
             this.stmt.execute("DROP TABLE IF EXISTS COMPANY");
             this.stmt.executeUpdate(Queries.CREATE_COMPANY_TABLE);
+            this.stmt.executeUpdate(Queries.CREATE_CAR_TABLE);
         } catch(Exception e) {
             e.printStackTrace();
         } finally {
