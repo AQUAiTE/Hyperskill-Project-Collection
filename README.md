@@ -13,4 +13,4 @@ A repo that holds all of the different simple projects I completed while going t
 * **"Meal Planner"**: Utilizes a PostgreSQL DB to create a CLI based program that allows users to save meal recipes and a weekly meal plan.
 
 ### Hard Projects
-* **"Car Sharing" (IN PROGRESS)**: Utilizes an H2 DB to create a car-sharing service.
+* **"Car Sharing"**: Utilizes an H2 DB to simulate a system of customers renting cars from companies. Features tracking of available/unavailable cars and the creation of customers/companies/cars.
