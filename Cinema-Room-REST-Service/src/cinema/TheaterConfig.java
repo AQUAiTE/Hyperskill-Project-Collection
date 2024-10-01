@@ -19,7 +19,8 @@ public class TheaterConfig {
 
         for (int i = 1; i <= ROWS; i++) {
             for (int j = 1; j <= COLUMNS; j++) {
-                seats.add(new Seat(i, j));
+                int price = i <= 4 ? 10 : 8;
+                seats.add(new Seat(i, j, price));
             }
         }
 
