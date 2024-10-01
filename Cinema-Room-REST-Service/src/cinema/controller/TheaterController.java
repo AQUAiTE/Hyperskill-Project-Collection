@@ -2,8 +2,11 @@ package cinema.controller;
 
 import cinema.model.Theater;
 import cinema.model.Seat;
+import cinema.model.Ticket;
+
 import cinema.service.TheaterService;
 
+import org.apache.el.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class TheaterController {
@@ -27,8 +31,17 @@ public class TheaterController {
         int row = seat.getRow();
         int column = seat.getColumn();
 
-        Seat boughtSeat = theaterService.buySeat(row, column);
-        return new ResponseEntity<>(boughtSeat, HttpStatus.OK);
+        Ticket boughtTicket = theaterService.buyTicket(row, column);
+        return new ResponseEntity<>(boughtTicket, HttpStatus.OK);
+    }
+
+    @PostMapping("/return")
+    public ResponseEntity<?> returnTicket(@RequestBody TokenRequest token) {
+        UUID tokenID = token.getToken();
+        Ticket returnedTicket = theaterService.returnTicket(tokenID);
+        Map<String, Seat> res = new HashMap<>();
+        res.put("ticket", returnedTicket.getSeat());
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @ExceptionHandler(IndexOutOfBoundsException.class)
@@ -43,5 +56,24 @@ public class TheaterController {
         Map<String, String> alreadyPurchasedResponse = new HashMap<>();
         alreadyPurchasedResponse.put("error", "The ticket has been already purchased!");
         return new ResponseEntity<>(alreadyPurchasedResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidTokenException() {
+        Map<String, String> invalidTokenResponse = new HashMap<>();
+        invalidTokenResponse.put("error", "Wrong token!");
+        return new ResponseEntity<>(invalidTokenResponse, HttpStatus.BAD_REQUEST);
+    }
+}
+
+class TokenRequest {
+    private UUID token;
+
+    public UUID getToken() {
+        return token;
+    }
+
+    public void setToken(UUID token) {
+        this.token = token;
     }
 }

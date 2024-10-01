@@ -1,6 +1,7 @@
 package cinema.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Seat {
     private int row;

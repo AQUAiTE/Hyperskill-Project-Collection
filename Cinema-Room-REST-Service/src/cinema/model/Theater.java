@@ -3,8 +3,7 @@ package cinema.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Theater {
     private int rows;
@@ -12,12 +11,14 @@ public class Theater {
 
     private List<Seat> seats;
     private List<Seat> availableSeats;
+    private Map<UUID, Ticket> tickets;
 
     public Theater(int rows, int columns, List<Seat> seats) {
         this.rows = rows;
         this.columns = columns;
         this.seats = seats;
         this.availableSeats = new ArrayList<>(this.seats);
+        this.tickets = new HashMap<>();
     }
 
     public int getRows() {
@@ -59,6 +60,15 @@ public class Theater {
         }
     }
 
+    @JsonIgnore
+    public Ticket getTicket(UUID token) {
+        return tickets.get(token);
+    }
+
+    public boolean isTokenInMap(UUID token) {
+        return tickets.containsKey(token);
+    }
+
     private boolean isValidPosition(int row, int col) {
         if (row <= 0 || col <= 0 || row > rows || col > columns) {
             return false;
@@ -67,11 +77,20 @@ public class Theater {
         return true;
     }
 
-    private int getSeatListPosition(int row, int col) throws IndexOutOfBoundsException {
+    public int getSeatListPosition(int row, int col) throws IndexOutOfBoundsException {
         if (!isValidPosition(row, col)) {
             throw new IndexOutOfBoundsException();
         }
         return ((row - 1) * columns + (col - 1));
     }
+
+    public void addNewTicket(UUID token, Ticket ticket) {
+        this.tickets.put(token, ticket);
+    }
+
+    public void removeTicket(UUID token) {
+        tickets.remove(token);
+    }
+
 
 }
