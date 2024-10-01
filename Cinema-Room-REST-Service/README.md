@@ -4,6 +4,7 @@ This project will use Spring to allow the program to handle HTTP requests, using
 ## Learned From Each Stage:
 
 ### Stage 1:
+* Setup, build, and run a Java Spring Boot application hosted on a local port
 * Create and use an `@RestController` class that exposes and responds to a GET endpoint request
 * Use `@Autowired` to automatically create the Cinema Theater in the Controller
 
