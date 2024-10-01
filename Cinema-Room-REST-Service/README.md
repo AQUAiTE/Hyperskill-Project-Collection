@@ -4,9 +4,17 @@ This project will use Spring to allow the program to handle HTTP requests, using
 ## Learned From Each Stage:
 
 ### Stage 1:
+* Create and use an `@RestController` class that exposes and responds to a GET endpoint request
+* Use `@Autowired` to automatically create the Cinema Theater in the Controller
 
 ### Stage 2:
+* Create an endpoint that responds to POST requests to allow a seat to be purchased
+* Catch and respond with custom JSON responses to invalid requests
 
 ### Stage 3:
+* Implement a pseudo-token system to track ticket purchases using Java's UUID class
+* Use a service class to make the logic of buying/returning clearer
+* Create another POST endpoint and give it a custom error response
+* Refactored exception handling to use `@ExceptionHandler` to remove try-catch blocks from endpoint coded
 
 ### Stage 4:
