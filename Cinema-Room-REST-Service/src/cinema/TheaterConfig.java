@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Configuration
 public class TheaterConfig {
@@ -25,5 +27,12 @@ public class TheaterConfig {
         }
 
         return new Theater(ROWS, COLUMNS, seats);
+    }
+
+    @Bean
+    public Map<String, String> adminLogin() {
+        Map<String, String> adminLogin = new HashMap<>();
+        adminLogin.put("password", "super_secret");
+        return adminLogin;
     }
 }

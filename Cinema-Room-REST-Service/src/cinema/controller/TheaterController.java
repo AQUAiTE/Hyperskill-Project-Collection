@@ -3,10 +3,9 @@ package cinema.controller;
 import cinema.model.Theater;
 import cinema.model.Seat;
 import cinema.model.Ticket;
-
 import cinema.service.TheaterService;
+import cinema.service.InvalidPasswordException;
 
-import org.apache.el.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +19,25 @@ import java.util.UUID;
 public class TheaterController {
     @Autowired
     private TheaterService theaterService;
+    @Autowired
+    private Map<String, String> managerLogin;
 
     @GetMapping("/seats")
     public ResponseEntity<Theater> getAvailableSeats() {
         return new ResponseEntity<>(theaterService.theater, HttpStatus.OK);
+    }
+
+    @GetMapping("/stats")
+    public ResponseEntity<?> getTheaterStats(@RequestParam(required = false) String password) {
+        if (password == null) {
+            throw new InvalidPasswordException("The password is wrong!");
+        }
+
+        if (!password.equals(managerLogin.get("password"))) {
+            throw new InvalidPasswordException("The password is wrong!");
+        }
+
+        return new ResponseEntity<>(theaterService.stats, HttpStatus.OK);
     }
 
     @PostMapping("/purchase")
@@ -63,6 +77,13 @@ public class TheaterController {
         Map<String, String> invalidTokenResponse = new HashMap<>();
         invalidTokenResponse.put("error", "Wrong token!");
         return new ResponseEntity<>(invalidTokenResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidPasswordException(InvalidPasswordException e) {
+        Map<String, String> invalidTokenResponse = new HashMap<>();
+        invalidTokenResponse.put("error", e.getMessage());
+        return new ResponseEntity<>(invalidTokenResponse, HttpStatus.UNAUTHORIZED);
     }
 }
 
