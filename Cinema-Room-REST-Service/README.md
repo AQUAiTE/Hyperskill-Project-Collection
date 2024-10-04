@@ -1,5 +1,5 @@
 # Hyperskill: Cinema Room REST Service 
-This project will use Spring to allow the program to handle HTTP requests, using JSON objects to respond. This will act as a simulation of managing a movie theater's tickets, seats, and more.
+This project uses Spring to expose HTTP Endpoints and respond to these requests with JSON objects. It simulates the existence of a Movie Theater, where customers can buy, return, and check the seats for their tickets. It additionally allows managers to check the number of seats purchased, available, and the income of the theater.
 
 ## Learned From Each Stage:
 
@@ -21,3 +21,7 @@ This project will use Spring to allow the program to handle HTTP requests, using
 ### Stage 4:
 * Adding an additional GET endpoint using an optinal `@RequestParam` and validating this request
 * Creating a custom class for an Exception and using it with `@ExceptionHandler`
+
+### Future Additions
+* Will likely come back and comment the code for clarity
+* Will do javadocs for the more lengthy functions
