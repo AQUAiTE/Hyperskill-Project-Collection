@@ -14,4 +14,7 @@ A repo that holds all of the different simple projects I completed while going t
 
 ### Hard Projects
 * **"Car Sharing"**: Utilizes an H2 DB to simulate a system of customers renting cars from companies. Features tracking of available/unavailable cars and the creation of customers/companies/cars.
-* **"Cinema Room REST Service" (IN PROGRESS)**: Simple REST service using Spring that simulates the management of a movie theater through JSON object responses to users.
+* **"Cinema Room REST Service"**: Simple REST service using Spring that simulates the management of a movie theater through exposing endpoints and responding with JSON objects.
+
+### Challenging Projects
+* **"Recipe Management System"**: Will be a CRUD program that allows multiple users to interact with their recipes in a DB through APIs.
