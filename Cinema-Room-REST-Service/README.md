@@ -19,3 +19,5 @@ This project will use Spring to allow the program to handle HTTP requests, using
 * Refactored exception handling to use `@ExceptionHandler` to remove try-catch blocks from endpoint coded
 
 ### Stage 4:
+* Adding an additional GET endpoint using an optinal `@RequestParam` and validating this request
+* Creating a custom class for an Exception and using it with `@ExceptionHandler`
